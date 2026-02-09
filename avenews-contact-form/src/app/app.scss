@@ -1,0 +1,74 @@
+@use 'variables' as *;
+@use 'mixins' as *;
+
+:host {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.app-header {
+  width: 100%;
+  z-index: 10;
+}
+
+.app-footer {
+  width: 100%;
+}
+
+.app-container {
+  width: 100%;
+  max-width: 360px;
+  background: $color-white;
+  box-shadow: $shadow-card;
+  overflow: hidden;
+  border-radius: $radius-lg;
+  border: 1px solid #e2e8f0;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+
+  @include mobile {
+    max-width: 100%;
+    border-radius: 0;
+    box-shadow: none;
+    border: none;
+  }
+
+  @include tablet {
+    max-width: 768px;
+  }
+
+  @include desktop {
+    max-width: 896px;
+  }
+
+  @include desktop-xl {
+    max-width: 1040px;
+  }
+}
+
+.app-main {
+  flex: 1;
+  padding: $spacing-2xl $spacing-xl 40px;
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-2xl;
+  background: $color-white;
+  border-bottom: 1px solid #e2e8f0;
+
+  @include tablet {
+    padding: 48px 64px 56px;
+  }
+
+  @include desktop {
+    padding: 56px 80px 64px;
+  }
+
+  @include mobile {
+    padding: 24px $spacing-xl 40px;
+    gap: 20px;
+  }
+}
