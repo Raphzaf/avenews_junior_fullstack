@@ -58,6 +58,49 @@ export class ContactFormComponent {
     );
   }
 
+
+/** Phone must be 10 digits total (254 + 7 digits). */
+static kenyaPhoneValidator(control: AbstractControl): ValidationErrors | null {
+  const rawValue = control.value as string;
+
+  if (!rawValue) return null;
+
+  // Remove all non-digit characters
+  const digitsOnly = rawValue.replace(/\D/g, '');
+  
+  // User enters 7 digits, we prepend 254 to make 10 total
+  const fullNumber = `254${digitsOnly}`;
+
+  // Validate: exactly 10 digits total (254 + 7)
+  if (!/^254\d{7}$/.test(fullNumber)) {
+    return { invalidPhone: true };
+  }
+
+  return null;
+}
+
+  /** Cross-field validator: verifyPhone must match phoneNumber */
+  static phoneMatchValidator(group: AbstractControl): ValidationErrors | null {
+    const phone = group.get('phoneNumber')?.value;
+    const verify = group.get('verifyPhone')?.value;
+
+    if (phone && verify && phone !== verify) {
+      group.get('verifyPhone')?.setErrors({ phoneMismatch: true });
+      return { phoneMismatch: true };
+    }
+
+    // Only clear phoneMismatch error, preserve other errors
+    const verifyControl = group.get('verifyPhone');
+    if (verifyControl?.errors?.['phoneMismatch']) {
+      const { phoneMismatch, ...remainingErrors } = verifyControl.errors;
+      verifyControl.setErrors(
+        Object.keys(remainingErrors).length ? remainingErrors : null,
+      );
+    }
+
+    return null;
+  }
+
   get showGlobalError(): boolean {
     return this.submitted && this.contactForm.invalid;
   }
