@@ -1,0 +1,41 @@
+<div class="form-field">
+  <label class="form-field__label" [attr.for]="'field-' + fieldNumber">
+    {{ fieldNumber }}. {{ label }}
+    @if (required) {
+      <span class="form-field__required">*</span>
+    }
+  </label>
+
+  @if (hint) {
+    <p class="form-field__hint">{{ hint }}</p>
+  }
+
+  <div class="form-field__input-wrapper">
+    <input
+      [id]="'field-' + fieldNumber"
+      [type]="inputType"
+      [placeholder]="placeholder"
+      [formControl]="control"
+      [ngClass]="{ 'form-field__input--error': showError }"
+      [attr.aria-invalid]="showError"
+      class="form-field__input"
+    />
+    @if (showToggle) {
+      <button
+        type="button"
+        class="form-field__toggle"
+        (click)="toggleVisibility()"
+        [attr.aria-label]="passwordVisible ? 'Hide value' : 'Show value'"
+      >
+        <iconify-icon
+          [attr.icon]="passwordVisible ? 'solar:eye-closed-linear' : 'solar:eye-linear'"
+          width="20"
+        ></iconify-icon>
+      </button>
+    }
+  </div>
+
+  @if (showError) {
+    <p class="form-field__error">{{ errorMessage }}</p>
+  }
+</div>

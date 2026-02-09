@@ -1,0 +1,38 @@
+<div class="recaptcha">
+  <span class="recaptcha__label">Required <span class="recaptcha__required">*</span></span>
+  <div
+    class="recaptcha__box"
+    [ngClass]="{ 'recaptcha__box--error': showError }"
+  >
+    <div class="recaptcha__left">
+      <button
+        type="button"
+        class="recaptcha__checkbox"
+        [ngClass]="{ 'recaptcha__checkbox--checked': control.value }"
+        (click)="toggle()"
+        role="checkbox"
+        [attr.aria-checked]="control.value"
+        aria-label="I'm not a robot verification"
+      >
+        @if (control.value) {
+          <span class="recaptcha__checkmark" aria-hidden="true"></span>
+        }
+      </button>
+      <span class="recaptcha__text">I'm not a robot</span>
+    </div>
+    <div class="recaptcha__right">
+      <img
+        src="/logo_recaptcha.png"
+        alt="reCAPTCHA"
+        class="recaptcha__logo"
+      />
+      <span class="recaptcha__brand">reCAPTCHA</span>
+      <div class="recaptcha__links">
+        <a href="#">Privacy</a> - <a href="#">Terms</a>
+      </div>
+    </div>
+  </div>
+  @if (showError) {
+    <p class="recaptcha__error">Please verify you are not a robot.</p>
+  }
+</div>

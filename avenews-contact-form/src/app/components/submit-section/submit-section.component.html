@@ -1,0 +1,17 @@
+<div class="submit-section">
+  @if (showGlobalError) {
+    <div class="submit-section__error-box">
+      <div class="submit-section__error-icon">
+        <iconify-icon icon="solar:danger-circle-linear" width="18"></iconify-icon>
+      </div>
+      <p class="submit-section__error-text">
+        Please complete all required questions to continue.
+      </p>
+    </div>
+  }
+
+  <button type="submit" class="submit-section__button">
+    <span>Save and continue</span>
+    <iconify-icon icon="solar:arrow-right-linear" width="20"></iconify-icon>
+  </button>
+</div>

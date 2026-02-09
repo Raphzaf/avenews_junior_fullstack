@@ -1,0 +1,42 @@
+<div class="terms-section">
+  <span class="terms-section__label">
+    Required <span class="terms-section__required">*</span>
+  </span>
+  <div
+    class="terms-section__box"
+    [ngClass]="{ 'terms-section__box--error': submitted && control.invalid }"
+  >
+    <label class="terms-section__checkbox-wrapper">
+      <input
+        type="checkbox"
+        [formControl]="control"
+        class="terms-section__hidden-input"
+        [attr.aria-invalid]="submitted && control.invalid"
+        [attr.aria-describedby]="submitted && control.invalid ? 'terms-error' : null"
+      />
+      <div
+        class="terms-section__checkbox"
+        [ngClass]="{ 'terms-section__checkbox--checked': control.value }"
+      >
+        @if (control.value) {
+          <iconify-icon
+            icon="solar:check-square-linear"
+            width="16"
+            class="terms-section__check-icon"
+          ></iconify-icon>
+        }
+      </div>
+    </label>
+    <p class="terms-section__text">
+      By checking the acceptance box and submitting an application, you confirm
+      that you have read and agree to this
+      <a href="#" class="terms-section__link">Application T&amp;C Bundle</a>
+      and that you are duly authorized to bind the Applicant entity.
+    </p>
+  </div>
+  @if (submitted && control.invalid) {
+    <p id="terms-error" class="terms-section__error">
+      You must accept the terms and conditions.
+    </p>
+  }
+</div>

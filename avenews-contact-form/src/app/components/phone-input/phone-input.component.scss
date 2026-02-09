@@ -1,0 +1,100 @@
+@use 'variables' as *;
+@use 'mixins' as *;
+
+.phone-field {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-sm;
+
+  &__label {
+    @include label-base;
+
+    @include tablet {
+      font-size: 18px;
+    }
+  }
+
+  &__required {
+    color: $color-error;
+  }
+
+  &__hint {
+    font-size: 12px;
+    color: $color-text-muted;
+    font-weight: 500;
+    line-height: 1.6;
+
+    @include tablet {
+      font-size: 14px;
+    }
+  }
+
+  &__row {
+    display: flex;
+    gap: $spacing-md;
+    margin-top: 4px;
+    
+    @include mobile {
+      flex-direction: column;
+    }
+  }
+
+  &__prefix {
+    width: 80px;
+    min-width: 80px;
+    border: 1px solid $color-border;
+    border-radius: $radius-sm;
+    background: $color-bg-input;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 8px;
+
+    @include tablet {
+      width: 96px;
+      min-width: 96px;
+      padding: 14px 10px;
+    }
+
+    @include mobile {
+      width: 100%;
+      min-width: 100%;
+      justify-content: flex-start;
+      padding-left: 12px;
+    }
+
+    span {
+      color: $color-text;
+      font-size: 14px;
+      font-weight: 600;
+
+      @include tablet {
+        font-size: 16px;
+      }
+    }
+  }
+
+  &__input {
+    @include input-base;
+    flex: 1;
+
+    @include tablet {
+      font-size: 16px;
+      padding: 14px 16px;
+    }
+
+    &--error {
+      @include input-error;
+    }
+  }
+
+  &__error {
+    font-size: 12px;
+    color: $color-error;
+    font-weight: 500;
+
+    @include tablet {
+      font-size: 14px;
+    }
+  }
+}

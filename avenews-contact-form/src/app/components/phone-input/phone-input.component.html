@@ -1,0 +1,31 @@
+<div class="phone-field">
+  <label class="phone-field__label" [attr.for]="'field-' + fieldNumber">
+    {{ fieldNumber }}. {{ label }}
+    @if (required) {
+      <span class="phone-field__required">*</span>
+    }
+  </label>
+
+  @if (hint) {
+    <p class="phone-field__hint">{{ hint }}</p>
+  }
+
+  <div class="phone-field__row">
+    <div class="phone-field__prefix">
+      <span>{{ countryCode }}</span>
+    </div>
+    <input
+      [id]="'field-' + fieldNumber"
+      type="tel"
+      [placeholder]="placeholder"
+      [formControl]="control"
+      [ngClass]="{ 'phone-field__input--error': showError }"
+      [attr.aria-invalid]="showError"
+      class="phone-field__input"
+    />
+  </div>
+
+  @if (showError) {
+    <p class="phone-field__error">{{ errorMessage }}</p>
+  }
+</div>
