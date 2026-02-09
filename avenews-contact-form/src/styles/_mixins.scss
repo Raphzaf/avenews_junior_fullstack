@@ -1,0 +1,79 @@
+@use 'variables' as *;
+
+// ======================
+// Responsive Breakpoints
+// ======================
+@mixin mobile {
+  @media screen and (max-width: $breakpoint-mobile-max) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media screen and (min-width: $breakpoint-tablet-min) and (max-width: $breakpoint-tablet-max) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media screen and (min-width: $breakpoint-desktop-min) {
+    @content;
+  }
+}
+
+@mixin desktop-xl {
+  @media screen and (min-width: $breakpoint-desktop-xl) {
+    @content;
+  }
+}
+
+// ======================
+// Input Base Style
+// ======================
+@mixin input-base {
+  width: 100%;
+  border: 1px solid $color-border;
+  border-radius: $radius-sm;
+  color: $color-text;
+  font-size: 14px;
+  font-weight: 500;
+  font-family: $font-body;
+  line-height: 1.4;
+  padding: 12px;
+  background: $color-bg-input;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+
+  &::placeholder {
+    color: $color-placeholder;
+    font-weight: 400;
+  }
+
+  &:focus {
+    border-color: $color-primary;
+    box-shadow: 0 0 0 1px $color-primary;
+  }
+}
+
+@mixin input-error {
+  border-color: $color-error;
+
+  &:focus {
+    border-color: $color-error;
+    box-shadow: 0 0 0 1px $color-error;
+  }
+}
+
+// ======================
+// Label Style
+// ======================
+@mixin label-base {
+  font-family: $font-heading;
+  font-weight: 600;
+  color: $color-text;
+  font-size: 16px;
+  line-height: 1.25;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
